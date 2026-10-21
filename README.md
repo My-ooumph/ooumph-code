@@ -1,3 +1,40 @@
+# Ooumph Code
+
+**Ooumph's AI coding agent for your terminal: runs on your own machine, with your own model.**
+
+Ooumph Code is built on [Qwen Code](https://github.com/QwenLM/qwen-code) (Apache-2.0). It comes in two editions from one codebase:
+
+| | **World** (default) | **Company** |
+|---|---|---|
+| For | Anyone, any machine | Ooumph employee laptops |
+| Model | Local Qwen via Ollama | Your laptop's FLM node (`OOUMPH_FLM_URL`), else local Qwen via Ollama |
+| Ooumph brain network | Never contacted | Joins through `OOUMPH_BRAIN_URL` |
+| Select it | nothing to set | `OOUMPH_EDITION=company` |
+
+### Quick start (World edition)
+
+```bash
+ollama pull qwen3:1.7b          # fits 8 GB laptops; 16 GB+: qwen3:4b with OOUMPH_MODEL=qwen3:4b
+ooumph
+```
+
+### Settings
+
+| Variable | Meaning | Default |
+|---|---|---|
+| `OOUMPH_EDITION` | `world` or `company` | `world` |
+| `OOUMPH_MODEL` | Model name | `qwen3:1.7b` (Company with `OOUMPH_FLM_URL`: `flm-local`) |
+| `OOUMPH_FLM_URL` | Company: OpenAI-compatible URL of the local FLM node | unset (falls back to Ollama) |
+| `OOUMPH_BRAIN_URL` | Company: Ooumph brain hub URL | unset |
+
+Your own `OPENAI_BASE_URL` / `OPENAI_API_KEY` / `OPENAI_MODEL` always win over the edition defaults.
+
+Full edition settings (themes, banner, model list) live in [`editions/`](./editions/README.md); `node editions/install.mjs` installs them into `~/.qwen/settings.json`. The defaults in `packages/cli/src/ooumph/edition.ts` mirror those files.
+
+Licence: Apache-2.0, see [LICENSE](./LICENSE) and [NOTICE](./NOTICE). The upstream Qwen Code README follows.
+
+---
+
 <div align="center">
 
 [![npm version](https://img.shields.io/npm/v/@qwen-code/qwen-code.svg)](https://www.npmjs.com/package/@qwen-code/qwen-code)

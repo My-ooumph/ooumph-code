@@ -8,6 +8,11 @@
 
 // --- Global Entry Point ---
 
+import { applyEditionDefaults } from './src/ooumph/edition.js';
+
+// Ooumph: pick the Company or World edition's local model before any config is read.
+applyEditionDefaults(process.env);
+
 // Java's private stdio worker bypasses the normal CLI module graph.
 const startup =
   process.argv.length === 3 && process.argv[2] === 'managed-runtime-bootstrap'

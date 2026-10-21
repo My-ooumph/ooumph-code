@@ -2,6 +2,8 @@
  * @license
  * Copyright 2025 Google LLC
  * SPDX-License-Identifier: Apache-2.0
+ *
+ * Modified 2026 by Myooumph Networks Private Limited: Ooumph Code edition title and subtitle.
  */
 
 import type React from 'react';
@@ -19,6 +21,7 @@ import { getRenderableGradientColors } from '../utils/gradientUtils.js';
 import { pickAsciiArtTier } from '../utils/customBanner.js';
 import { t } from '../../i18n/index.js';
 import { formatVersionLabel } from '../../utils/version.js';
+import { editionSubtitle, editionTitle } from '../../ooumph/edition.js';
 
 /**
  * Auth display type for the Header component.
@@ -208,22 +211,19 @@ export const Header: React.FC<HeaderProps> = ({
         flexGrow={showLogo ? 0 : 1}
         width={showLogo ? availableInfoPanelWidth : undefined}
       >
-        {/* Title line: customBannerTitle (already sanitized) or the default
-            ">_ Qwen Code" brand. Version suffix is always appended. */}
+        {/* Title line: customBannerTitle (already sanitized) or the Ooumph
+            edition brand (">_ Ooumph Code"). Version suffix is always appended. */}
         <Text>
           <Text bold color={theme.text.accent}>
-            {customBannerTitle ? customBannerTitle : '>_ Qwen Code'}
+            {customBannerTitle ? customBannerTitle : `>_ ${editionTitle()}`}
           </Text>
           <Text color={theme.text.secondary}> ({versionLabel})</Text>
         </Text>
-        {/* Subtitle (when set) replaces the blank spacer row. We always
-            emit a row here so the auth/model line stays at the same
-            vertical position regardless of whether the subtitle is set. */}
-        {customBannerSubtitle ? (
-          <Text color={theme.text.secondary}>{customBannerSubtitle}</Text>
-        ) : (
-          <Text> </Text>
-        )}
+        {/* Subtitle row: the user's custom subtitle, else the edition's.
+            Always one row, so the auth/model line keeps its position. */}
+        <Text color={theme.text.secondary}>
+          {customBannerSubtitle ? customBannerSubtitle : editionSubtitle()}
+        </Text>
         {/* Auth and Model line */}
         <Text>
           <Text color={theme.text.secondary}>{authModelText}</Text>

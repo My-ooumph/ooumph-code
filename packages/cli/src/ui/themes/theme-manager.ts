@@ -2,6 +2,8 @@
  * @license
  * Copyright 2025 Google LLC
  * SPDX-License-Identifier: Apache-2.0
+ *
+ * Modified 2026 by Myooumph Networks Private Limited: Ooumph themes are the default.
  */
 
 import { AyuDark } from './ayu.js';
@@ -17,6 +19,8 @@ import { ShadesOfPurple } from './shades-of-purple.js';
 import { XCode } from './xcode.js';
 import { QwenLight } from './qwen-light.js';
 import { QwenDark } from './qwen-dark.js';
+import { OoumphLight } from './ooumph-light.js';
+import { OoumphDark } from './ooumph-dark.js';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as os from 'node:os';
@@ -42,7 +46,7 @@ export interface ThemeDisplay {
   isCustom?: boolean;
 }
 
-export const DEFAULT_THEME: Theme = QwenDark;
+export const DEFAULT_THEME: Theme = OoumphDark;
 export const AUTO_THEME_NAME = 'auto';
 
 function isPathWithinDirectory(parent: string, child: string): boolean {
@@ -71,6 +75,8 @@ class ThemeManager {
       GitHubDark,
       GitHubLight,
       GoogleCode,
+      OoumphLight,
+      OoumphDark,
       QwenLight,
       QwenDark,
       ShadesOfPurple,
@@ -173,7 +179,7 @@ class ThemeManager {
    */
   private resolveAutoTheme(): Theme {
     const detected = this.cachedAutoDetection ?? detectTerminalTheme();
-    return detected === 'light' ? QwenLight : QwenDark;
+    return detected === 'light' ? OoumphLight : OoumphDark;
   }
 
   /**
@@ -185,7 +191,7 @@ class ThemeManager {
   async resolveAutoThemeAsync(): Promise<void> {
     const detected = await detectTerminalThemeAsync();
     this.cachedAutoDetection = detected;
-    this.activeTheme = detected === 'light' ? QwenLight : QwenDark;
+    this.activeTheme = detected === 'light' ? OoumphLight : OoumphDark;
     debugLogger.info(`Auto-detected theme (async): ${this.activeTheme.name}`);
   }
 
@@ -275,12 +281,13 @@ class ThemeManager {
       }),
     );
 
-    // Separate Qwen themes
-    const qwenThemes = builtInThemes.filter(
-      (theme) => theme.name === QwenLight.name || theme.name === QwenDark.name,
-    );
+    // Separate the brand themes (Ooumph first, then Qwen) so they lead the list
+    const brandNames = [OoumphDark.name, OoumphLight.name, QwenLight.name, QwenDark.name];
+    const qwenThemes = builtInThemes
+      .filter((theme) => brandNames.includes(theme.name))
+      .sort((a, b) => brandNames.indexOf(a.name) - brandNames.indexOf(b.name));
     const otherBuiltInThemes = builtInThemes.filter(
-      (theme) => theme.name !== QwenLight.name && theme.name !== QwenDark.name,
+      (theme) => !brandNames.includes(theme.name),
     );
 
     // Sort other themes by type and then name

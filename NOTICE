@@ -1,0 +1,12 @@
+Ooumph Code
+Copyright 2026 Myooumph Networks Private Limited
+
+Ooumph Code is a modified version of Qwen Code (https://github.com/QwenLM/qwen-code),
+which is licensed under the Apache License, Version 2.0, and which itself builds on
+Gemini CLI, Copyright 2025 Google LLC. The original copyright notices in each source
+file are retained. See LICENSE for the full license text.
+
+Modifications by Myooumph Networks Private Limited (2026): Ooumph branding (name,
+logo, colours, banner), the "Company" and "World" edition settings under editions/,
+and the `ooumph` command. "Qwen" is a trademark of its owner. Ooumph Code is not
+affiliated with or endorsed by the Qwen team or Alibaba.

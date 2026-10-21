@@ -153,7 +153,8 @@
     "react-markdown": "^9.0.0"
   },
   "bin": {
-    "qwen": "scripts/cli-entry.js"
+    "qwen": "scripts/cli-entry.js",
+    "ooumph": "scripts/cli-entry.js"
   },
   "files": [
     "dist/",

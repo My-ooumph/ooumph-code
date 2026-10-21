@@ -1,0 +1,93 @@
+{
+  "ui": {
+    "theme": "Ooumph Dark",
+    "customThemes": {
+      "Ooumph Dark": {
+        "name": "Ooumph Dark",
+        "type": "custom",
+        "Background": "#0f172a",
+        "Foreground": "#f1f5fb",
+        "LightBlue": "#93c5fd",
+        "AccentBlue": "#60a5fa",
+        "AccentPurple": "#f472b6",
+        "AccentCyan": "#5eead4",
+        "AccentGreen": "#34d399",
+        "AccentYellow": "#fbbf24",
+        "AccentRed": "#f87171",
+        "Comment": "#94a3b8",
+        "Gray": "#334155",
+        "DiffAdded": "#059669",
+        "DiffRemoved": "#be123c",
+        "GradientColors": [
+          "#059669",
+          "#2563eb",
+          "#db2777"
+        ]
+      },
+      "Ooumph Light": {
+        "name": "Ooumph Light",
+        "type": "custom",
+        "Background": "#ffffff",
+        "Foreground": "#0f172a",
+        "LightBlue": "#2563eb",
+        "AccentBlue": "#2563eb",
+        "AccentPurple": "#db2777",
+        "AccentCyan": "#0e7490",
+        "AccentGreen": "#059669",
+        "AccentYellow": "#b45309",
+        "AccentRed": "#dc2626",
+        "Comment": "#64748b",
+        "Gray": "#cbd5e1",
+        "DiffAdded": "#059669",
+        "DiffRemoved": "#dc2626",
+        "GradientColors": [
+          "#059669",
+          "#2563eb",
+          "#db2777"
+        ]
+      }
+    },
+    "customBannerTitle": ">_ Ooumph Code",
+    "customBannerSubtitle": "World edition · open AI coding agent by Ooumph · runs on your own machine",
+    "customAsciiArt": {
+      "small": "  OOUMPH\n  ------",
+      "large": " ██████╗  ██████╗ ██╗   ██╗███╗   ███╗██████╗ ██╗  ██╗\n██╔═══██╗██╔═══██╗██║   ██║████╗ ████║██╔══██╗██║  ██║\n██║   ██║██║   ██║██║   ██║██╔████╔██║██████╔╝███████║\n██║   ██║██║   ██║██║   ██║██║╚██╔╝██║██╔═══╝ ██╔══██║\n╚██████╔╝╚██████╔╝╚██████╔╝██║ ╚═╝ ██║██║     ██║  ██║\n ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝"
+    }
+  },
+  "security": {
+    "auth": {
+      "selectedType": "openai"
+    }
+  },
+  "model": {
+    "name": "qwen3:1.7b"
+  },
+  "env": {
+    "OLLAMA_API_KEY": "ollama"
+  },
+  "modelProviders": {
+    "openai": [
+      {
+        "id": "qwen3:1.7b",
+        "name": "Qwen3 1.7B (local, Ollama)",
+        "description": "Default. Fits 8 GB laptops.",
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "envKey": "OLLAMA_API_KEY"
+      },
+      {
+        "id": "qwen3:4b",
+        "name": "Qwen3 4B (local, Ollama)",
+        "description": "16 GB+ machines.",
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "envKey": "OLLAMA_API_KEY"
+      },
+      {
+        "id": "qwen2.5-coder:7b",
+        "name": "Qwen2.5 Coder 7B (local, Ollama)",
+        "description": "32 GB+ or a GPU.",
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "envKey": "OLLAMA_API_KEY"
+      }
+    ]
+  }
+}
